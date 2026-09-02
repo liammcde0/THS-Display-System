@@ -89,13 +89,17 @@ function updateClock(){
     document.getElementById("time").textContent =
         now.toLocaleTimeString('en-GB');
 
-    document.getElementById("date").textContent =
-        now.toLocaleDateString('en-GB',{
-            weekday:'long',
-            day:'numeric',
-            month:'long',
-            year:'numeric'
-        });
+    document.getElementById("day").textContent =
+    now.toLocaleDateString('en-GB',{
+        weekday:'long'
+    }).toUpperCase();
+
+document.getElementById("date").textContent =
+    now.toLocaleDateString('en-GB',{
+        day:'numeric',
+        month:'long',
+        year:'numeric'
+    });
 
     const period = getCurrentPeriod();
 
