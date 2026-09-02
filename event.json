@@ -1,6 +1,6 @@
 {
-  "enabled": true,
-  "title": "Family Learning Session",
-  "subtitle": "Thursday 12 September",
-  "message": "Welcome, please grab a seat at the tables and Mrs Simpson will be with you shortly."
+  "enabled": false,
+  "title": "Title",
+  "subtitle": "Subtitle",
+  "message": "Message"
 }
