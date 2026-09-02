@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trinity High School Display</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="eventScreen" class="event-screen hidden">
+    <img src="school-logo.png" alt="School Logo">
+    <h1 id="eventTitle"></h1>
+    <h2 id="eventSubtitle"></h2>
+    <p id="eventMessage"></p>
+</div>
+
+<div id="mainScreen">
+
+    <header>
+
+        <div class="logo-section">
+            <img src="school-logo.png" alt="School Logo">
+            <div>
+                <h1>Trinity High School</h1>
+                <p>Home • School • Church</p>
+            </div>
+        </div>
+
+        <div class="clock-section">
+            <div id="time"></div>
+            <div id="date"></div>
+        </div>
+
+    </header>
+
+    <main>
+
+        <div class="period-card">
+
+            <div class="period-label">
+                CURRENT PERIOD
+            </div>
+
+            <div id="periodName" class="period-name">
+                Loading...
+            </div>
+
+            <div id="periodEnd" class="period-end">
+                Loading...
+            </div>
+
+        </div>
+
+        <div id="assemblyContainer" class="assembly hidden">
+            Assembly is for:
+            <span id="assemblyYear"></span>
+        </div>
+
+        <div class="notices">
+
+            <h2>School Notices</h2>
+
+            <ul id="noticeList">
+            </ul>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

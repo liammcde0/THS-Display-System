@@ -1,0 +1,171 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:#f5f5f5;
+    color:#222;
+    height:100vh;
+}
+
+header{
+    background:#6a1b4d;
+    color:white;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:20px 40px;
+
+    box-shadow:0 4px 15px rgba(0,0,0,0.2);
+}
+
+.logo-section{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.logo-section img{
+    height:90px;
+}
+
+.logo-section h1{
+    font-size:2rem;
+}
+
+.logo-section p{
+    opacity:0.9;
+}
+
+.clock-section{
+    text-align:right;
+}
+
+#time{
+    font-size:3rem;
+    font-weight:bold;
+}
+
+#date{
+    font-size:1.2rem;
+}
+
+main{
+    padding:30px;
+}
+
+.period-card{
+
+    background:white;
+
+    border-radius:25px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+
+    text-align:center;
+
+    padding:60px;
+
+    margin-bottom:20px;
+}
+
+.period-label{
+    font-size:2rem;
+    color:#6a1b4d;
+}
+
+.period-name{
+    font-size:7rem;
+    font-weight:900;
+    margin:20px 0;
+}
+
+.period-end{
+    font-size:2.2rem;
+}
+
+.assembly{
+
+    background:#6a1b4d;
+    color:white;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    font-size:2rem;
+
+    margin-bottom:20px;
+}
+
+.notices{
+
+    background:white;
+
+    border-radius:25px;
+
+    padding:30px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+.notices h2{
+    margin-bottom:20px;
+    color:#6a1b4d;
+}
+
+.notices li{
+    margin:12px 0;
+    font-size:1.4rem;
+}
+
+.event-screen{
+
+    position:fixed;
+
+    inset:0;
+
+    background:#6a1b4d;
+
+    color:white;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:9999;
+}
+
+.event-screen img{
+    height:220px;
+    margin-bottom:40px;
+}
+
+.event-screen h1{
+    font-size:5rem;
+}
+
+.event-screen h2{
+    font-size:2rem;
+    margin-top:20px;
+}
+
+.event-screen p{
+    font-size:1.5rem;
+    margin-top:15px;
+}
+
+.hidden{
+    display:none;
+}
