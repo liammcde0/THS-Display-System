@@ -122,7 +122,12 @@ main{
 }
 
 .notices li{
+    list-style:none;
+    background:#f5f5f5;
+    padding:12px 18px;
+    border-left:5px solid #6a1b4d;
     margin:12px 0;
+    border-radius:8px;
     font-size:1.4rem;
 }
 
