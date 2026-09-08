@@ -301,10 +301,11 @@ async function saveData(){
 
     }catch(error){
 
-        console.error(error);
+    console.error("SAVE ERROR:", error);
+    alert(error.message);
 
-        status.textContent =
-            "Error saving changes";
+    status.textContent =
+        "Error saving changes";
 
         status.className =
             "status error";
