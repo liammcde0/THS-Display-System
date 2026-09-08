@@ -5,16 +5,18 @@ import {
     signInWithEmailAndPassword,
     signOut,
     onAuthStateChanged
-}
-from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 
 import {
     getFirestore,
     doc,
     getDoc,
     setDoc
-}
-from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+/* =========================
+   FIREBASE CONFIG
+========================= */
 
 const firebaseConfig = {
     apiKey: "AIzaSyBQRgTDe68NjbLraqQULTPuN59qCckYduY",
@@ -30,6 +32,10 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
+/* =========================
+   PAGE ELEMENTS
+========================= */
+
 const loginPage =
     document.getElementById("loginPage");
 
@@ -39,13 +45,13 @@ const dashboard =
 const status =
     document.getElementById("status");
 
-/* --------------------
-   Login
---------------------- */
+/* =========================
+   LOGIN
+========================= */
 
 document
 .getElementById("loginBtn")
-.addEventListener("click", async ()=>{
+.addEventListener("click", async () => {
 
     const email =
         document.getElementById("email").value;
@@ -53,7 +59,7 @@ document
     const password =
         document.getElementById("password").value;
 
-    try{
+    try {
 
         await signInWithEmailAndPassword(
             auth,
@@ -61,67 +67,69 @@ document
             password
         );
 
-    }catch(error){
+    } catch (error) {
 
         alert(
-            "Login failed:\n" +
+            "Login Failed\n\n" +
             error.message
         );
     }
 });
 
-/* --------------------
-   Logout
---------------------- */
+/* =========================
+   LOGOUT
+========================= */
 
 document
 .getElementById("logoutBtn")
-.addEventListener("click", async ()=>{
+.addEventListener("click", async () => {
 
     await signOut(auth);
+
 });
 
-/* --------------------
-   Auth State
---------------------- */
+/* =========================
+   AUTH STATE
+========================= */
 
-onAuthStateChanged(auth, async (user)=>{
+onAuthStateChanged(auth, async (user) => {
 
-    if(user){
+    if (user) {
 
         loginPage.classList.add("hidden");
         dashboard.classList.remove("hidden");
 
-        loadData();
+        console.log("Logged in:", user.email);
 
-    }else{
+        await loadData();
+
+    } else {
 
         dashboard.classList.add("hidden");
         loginPage.classList.remove("hidden");
+
     }
 });
 
-/* --------------------
-   Load Data
---------------------- */
+/* =========================
+   LOAD DATA
+========================= */
 
-async function loadData(){
+async function loadData() {
 
-    try{
+    console.log("Loading Firestore data...");
+
+    /* SETTINGS */
+
+    try {
 
         const settingsRef =
-            doc(db,"display","settings");
-
-        const noticesRef =
-            doc(db,"display","notices");
+            doc(db, "display", "settings");
 
         const settingsSnap =
             await getDoc(settingsRef);
 
-        const noticesSnap =
-            await getDoc(noticesRef);
-
-        if(settingsSnap.exists()){
+        if (settingsSnap.exists()) {
 
             const data =
                 settingsSnap.data();
@@ -167,47 +175,73 @@ async function loadData(){
                 data.emergencyMessage || "";
         }
 
-        if(noticesSnap.exists()){
+    } catch (error) {
+
+        console.error(
+            "Settings load failed:",
+            error
+        );
+    }
+
+    /* NOTICES */
+
+    try {
+
+        const noticesRef =
+            doc(db, "display", "notices");
+
+        const noticesSnap =
+            await getDoc(noticesRef);
+
+        if (noticesSnap.exists()) {
+
+            const data =
+                noticesSnap.data();
 
             const notices =
-                noticesSnap.data().items || [];
+                Array.isArray(data.items)
+                ? data.items
+                : [];
 
-            for(let i=0;i<5;i++){
+            for (let i = 0; i < 5; i++) {
 
-                const field =
-                    document.getElementById(
-                        `notice${i+1}`
-                    );
-
-                field.value =
+                document.getElementById(
+                    `notice${i + 1}`
+                ).value =
                     notices[i] || "";
             }
         }
 
-    }catch(error){
+    } catch (error) {
 
-        console.error(error);
+        console.error(
+            "Notices load failed:",
+            error
+        );
     }
 }
 
-/* --------------------
-   Save
---------------------- */
+/* =========================
+   SAVE BUTTON
+========================= */
 
 document
 .getElementById("saveBtn")
 .addEventListener("click", saveData);
 
-async function saveData(){
-    console.log("Save button clicked");
-    
-    
+/* =========================
+   SAVE DATA
+========================= */
 
-    try{
+async function saveData() {
+
+    console.log("Save button clicked");
+
+    try {
 
         const notices = [];
 
-        for(let i=1;i<=5;i++){
+        for (let i = 1; i <= 5; i++) {
 
             const value =
                 document
@@ -217,9 +251,10 @@ async function saveData(){
                 .value
                 .trim();
 
-            if(value !== ""){
+            if (value !== "") {
 
                 notices.push(value);
+
             }
         }
 
@@ -227,10 +262,9 @@ async function saveData(){
 
         await setDoc(
 
-            doc(db,"display","settings"),
+            doc(db, "display", "settings"),
 
             {
-
                 assemblyYear:
                     document.getElementById(
                         "assemblyYear"
@@ -270,22 +304,25 @@ async function saveData(){
                     document.getElementById(
                         "emergencyMessage"
                     ).value
-
             }
 
         );
+
+        console.log("Settings saved");
 
         console.log("Writing notices...");
 
         await setDoc(
 
-            doc(db,"display","notices"),
+            doc(db, "display", "notices"),
 
             {
-                items:notices
+                items: notices
             }
 
         );
+
+        console.log("Notices saved");
 
         status.textContent =
             "Changes saved successfully";
@@ -293,19 +330,26 @@ async function saveData(){
         status.className =
             "status success";
 
-        setTimeout(()=>{
+        setTimeout(() => {
 
-            status.textContent="";
+            status.textContent = "";
 
-        },3000);
+        }, 3000);
 
-    }catch(error){
+    } catch (error) {
 
-    console.error("SAVE ERROR:", error);
-    alert(error.message);
+        console.error(
+            "SAVE ERROR:",
+            error
+        );
 
-    status.textContent =
-        "Error saving changes";
+        alert(
+            "Save Failed\n\n" +
+            error.message
+        );
+
+        status.textContent =
+            "Error saving changes";
 
         status.className =
             "status error";
