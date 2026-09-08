@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trinity Display Admin</title>
+<link rel="stylesheet" href="admin.css">
+
+</head>
+<body>
+
+<!-- LOGIN -->
+
+<div id="loginPage" class="login-container">
+
+    <div class="login-box">
+
+        <h1>Trinity Display</h1>
+
+        <p>Staff Login</p>
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Email">
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Password">
+
+        <button id="loginBtn">
+            Login
+        </button>
+
+    </div>
+
+</div>
+
+<!-- DASHBOARD -->
+
+<div id="dashboard" class="dashboard hidden">
+
+<header>
+
+    <h1>Trinity Display Admin</h1>
+
+    <button
+        id="logoutBtn"
+        class="logout-btn">
+        Logout
+    </button>
+
+</header>
+
+<div class="container">
+
+    <!-- Assembly -->
+
+    <div class="card">
+
+        <h2>Assembly Settings</h2>
+
+        <div class="form-group">
+
+            <label>
+                Assembly Year Group
+            </label>
+
+            <select id="assemblyYear">
+
+                <option>S1</option>
+                <option>S2</option>
+                <option>S3</option>
+                <option>S4</option>
+                <option>S5</option>
+                <option>S6</option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+    <!-- Notices -->
+
+    <div class="card">
+
+        <h2>School Notices</h2>
+
+        <div class="form-group">
+
+            <label>Notice 1</label>
+
+            <input
+                type="text"
+                id="notice1">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Notice 2</label>
+
+            <input
+                type="text"
+                id="notice2">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Notice 3</label>
+
+            <input
+                type="text"
+                id="notice3">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Notice 4</label>
+
+            <input
+                type="text"
+                id="notice4">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Notice 5</label>
+
+            <input
+                type="text"
+                id="notice5">
+
+        </div>
+
+    </div>
+
+    <!-- Event Mode -->
+
+    <div class="card">
+
+        <h2>Event Override</h2>
+
+        <div class="form-group">
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    id="eventEnabled"
+                    class="toggle">
+
+                Enable Event Mode
+
+            </label>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Title</label>
+
+            <input
+                type="text"
+                id="eventTitle">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Subtitle</label>
+
+            <input
+                type="text"
+                id="eventSubtitle">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Message</label>
+
+            <textarea
+                id="eventMessage"></textarea>
+
+        </div>
+
+    </div>
+
+    <!-- Emergency -->
+
+    <div class="card">
+
+        <h2>Emergency Override</h2>
+
+        <div class="form-group">
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    id="emergencyEnabled"
+                    class="toggle">
+
+                Enable Emergency Screen
+
+            </label>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Emergency Title</label>
+
+            <input
+                type="text"
+                id="emergencyTitle">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Emergency Message</label>
+
+            <textarea
+                id="emergencyMessage"></textarea>
+
+        </div>
+
+    </div>
+
+    <!-- Save -->
+
+    <div class="card">
+
+        <button
+            id="saveBtn"
+            class="save-btn">
+
+            Save Changes
+
+        </button>
+
+        <div
+            id="status"
+            class="status">
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+<script type="module" src="admin.js"></script>
+
+</body>
+</html>
