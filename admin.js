@@ -117,6 +117,11 @@ onAuthStateChanged(auth, async (user) => {
 
 async function loadData() {
 
+    console.log("Database object:", db);
+
+const noticesRef = doc(db, "display", "notices");
+console.log("Notices ref:", noticesRef.path);
+
     try {
 
         console.log("Loading data...");
@@ -195,40 +200,42 @@ async function loadData() {
 
     /* NOTICES */
 
-    try {
+   try {
 
-        const noticesRef =
-            doc(db, "display", "notices");
+    console.log("Attempting to load notices...");
 
-        const noticesSnap =
-            await getDoc(noticesRef);
+    const noticesSnap = await getDoc(
+        doc(db, "display", "notices")
+    );
 
-        if (noticesSnap.exists()) {
+    console.log("Notices exists:", noticesSnap.exists());
 
-            const data =
-                noticesSnap.data();
+    if (noticesSnap.exists()) {
 
-            const notices =
-                Array.isArray(data.items)
-                ? data.items
-                : [];
+        console.log("Notices data:", noticesSnap.data());
 
-            for (let i = 0; i < 5; i++) {
+        const notices =
+            noticesSnap.data().items || [];
 
-                document.getElementById(
-                    `notice${i + 1}`
-                ).value =
-                    notices[i] || "";
+        for (let i = 0; i < 5; i++) {
+
+            const field =
+                document.getElementById(`notice${i+1}`);
+
+            if(field){
+                field.value = notices[i] || "";
             }
         }
-
-    } catch (error) {
-
-        console.error(
-            "Notices load failed:",
-            error
-        );
     }
+
+} catch (error) {
+
+    console.error(
+        "NOTICES ERROR FULL:",
+        error.code,
+        error.message,
+        error
+    );
 }
 
 /* =========================
