@@ -117,71 +117,81 @@ onAuthStateChanged(auth, async (user) => {
 
 async function loadData() {
 
-    console.log("Loading Firestore data...");
-
-    /* SETTINGS */
-
     try {
 
-        const settingsRef =
-            doc(db, "display", "settings");
+        console.log("Loading data...");
 
-        const settingsSnap =
-            await getDoc(settingsRef);
+        const settingsSnap = await getDoc(
+            doc(db, "display", "settings")
+        );
 
         if (settingsSnap.exists()) {
 
-            const data =
-                settingsSnap.data();
+            const data = settingsSnap.data();
 
-            document.getElementById(
-                "assemblyYear"
-            ).value =
+            document.getElementById("assemblyYear").value =
                 data.assemblyYear || "S1";
 
-            document.getElementById(
-                "eventEnabled"
-            ).checked =
+            document.getElementById("eventEnabled").checked =
                 data.eventEnabled || false;
 
-            document.getElementById(
-                "eventTitle"
-            ).value =
+            document.getElementById("eventTitle").value =
                 data.eventTitle || "";
 
-            document.getElementById(
-                "eventSubtitle"
-            ).value =
+            document.getElementById("eventSubtitle").value =
                 data.eventSubtitle || "";
 
-            document.getElementById(
-                "eventMessage"
-            ).value =
+            document.getElementById("eventMessage").value =
                 data.eventMessage || "";
 
-            document.getElementById(
-                "emergencyEnabled"
-            ).checked =
+            document.getElementById("emergencyEnabled").checked =
                 data.emergencyEnabled || false;
 
-            document.getElementById(
-                "emergencyTitle"
-            ).value =
+            document.getElementById("emergencyTitle").value =
                 data.emergencyTitle || "";
 
-            document.getElementById(
-                "emergencyMessage"
-            ).value =
+            document.getElementById("emergencyMessage").value =
                 data.emergencyMessage || "";
+        }
+
+        try {
+
+            const noticesSnap = await getDoc(
+                doc(db, "display", "notices")
+            );
+
+            if (noticesSnap.exists()) {
+
+                const notices =
+                    noticesSnap.data().items || [];
+
+                for (let i = 0; i < 5; i++) {
+
+                    const field =
+                        document.getElementById(`notice${i + 1}`);
+
+                    if (field) {
+                        field.value = notices[i] || "";
+                    }
+                }
+            }
+
+        } catch (error) {
+
+            console.error(
+                "Could not load notices:",
+                error
+            );
         }
 
     } catch (error) {
 
         console.error(
-            "Settings load failed:",
+            "Could not load settings:",
             error
         );
     }
+}
 
     /* NOTICES */
 
