@@ -28,7 +28,6 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-
 const auth = getAuth(app);
 const db = getFirestore(app);
 
@@ -36,14 +35,9 @@ const db = getFirestore(app);
    PAGE ELEMENTS
 ========================= */
 
-const loginPage =
-    document.getElementById("loginPage");
-
-const dashboard =
-    document.getElementById("dashboard");
-
-const status =
-    document.getElementById("status");
+const loginPage = document.getElementById("loginPage");
+const dashboard = document.getElementById("dashboard");
+const status = document.getElementById("status");
 
 /* =========================
    LOGIN
@@ -68,6 +62,8 @@ document
         );
 
     } catch (error) {
+
+        console.error(error);
 
         alert(
             "Login Failed\n\n" +
@@ -96,17 +92,20 @@ onAuthStateChanged(auth, async (user) => {
 
     if (user) {
 
+        console.log(
+            "Logged in:",
+            user.email
+        );
+
         loginPage.classList.add("hidden");
         dashboard.classList.remove("hidden");
-
-        console.log("Logged in:", user.email);
 
         await loadData();
 
     } else {
 
-        dashboard.classList.add("hidden");
         loginPage.classList.remove("hidden");
+        dashboard.classList.add("hidden");
 
     }
 });
@@ -117,125 +116,127 @@ onAuthStateChanged(auth, async (user) => {
 
 async function loadData() {
 
-    console.log("Database object:", db);
-
-const noticesRef = doc(db, "display", "notices");
-console.log("Notices ref:", noticesRef.path);
-
     try {
 
-        console.log("Loading data...");
+        console.log("Loading Firestore data...");
 
-        const settingsSnap = await getDoc(
-            doc(db, "display", "settings")
+        const settingsSnap =
+            await getDoc(
+                doc(db, "display", "settings")
+            );
+
+        console.log(
+            "Settings exists:",
+            settingsSnap.exists()
         );
 
         if (settingsSnap.exists()) {
 
-            const data = settingsSnap.data();
+            const data =
+                settingsSnap.data();
 
-            document.getElementById("assemblyYear").value =
+            document.getElementById(
+                "assemblyYear"
+            ).value =
                 data.assemblyYear || "S1";
 
-            document.getElementById("eventEnabled").checked =
+            document.getElementById(
+                "eventEnabled"
+            ).checked =
                 data.eventEnabled || false;
 
-            document.getElementById("eventTitle").value =
+            document.getElementById(
+                "eventTitle"
+            ).value =
                 data.eventTitle || "";
 
-            document.getElementById("eventSubtitle").value =
+            document.getElementById(
+                "eventSubtitle"
+            ).value =
                 data.eventSubtitle || "";
 
-            document.getElementById("eventMessage").value =
+            document.getElementById(
+                "eventMessage"
+            ).value =
                 data.eventMessage || "";
 
-            document.getElementById("emergencyEnabled").checked =
+            document.getElementById(
+                "emergencyEnabled"
+            ).checked =
                 data.emergencyEnabled || false;
 
-            document.getElementById("emergencyTitle").value =
+            document.getElementById(
+                "emergencyTitle"
+            ).value =
                 data.emergencyTitle || "";
 
-            document.getElementById("emergencyMessage").value =
+            document.getElementById(
+                "emergencyMessage"
+            ).value =
                 data.emergencyMessage || "";
-        }
-
-        try {
-
-            const noticesSnap = await getDoc(
-                doc(db, "display", "notices")
-            );
-
-            if (noticesSnap.exists()) {
-
-                const notices =
-                    noticesSnap.data().items || [];
-
-                for (let i = 0; i < 5; i++) {
-
-                    const field =
-                        document.getElementById(`notice${i + 1}`);
-
-                    if (field) {
-                        field.value = notices[i] || "";
-                    }
-                }
-            }
-
-        } catch (error) {
-
-            console.error(
-                "Could not load notices:",
-                error
-            );
         }
 
     } catch (error) {
 
         console.error(
-            "Could not load settings:",
+            "SETTINGS LOAD ERROR:",
+            error.code,
+            error.message,
             error
         );
     }
-}
 
-    /* NOTICES */
+    try {
 
-   try {
+        console.log(
+            "Loading notices..."
+        );
 
-    console.log("Attempting to load notices...");
+        const noticesSnap =
+            await getDoc(
+                doc(db, "display", "notices")
+            );
 
-    const noticesSnap = await getDoc(
-        doc(db, "display", "notices")
-    );
+        console.log(
+            "Notices exists:",
+            noticesSnap.exists()
+        );
 
-    console.log("Notices exists:", noticesSnap.exists());
+        if (noticesSnap.exists()) {
 
-    if (noticesSnap.exists()) {
+            const notices =
+                noticesSnap.data().items || [];
 
-        console.log("Notices data:", noticesSnap.data());
+            console.log(
+                "Notices data:",
+                notices
+            );
 
-        const notices =
-            noticesSnap.data().items || [];
+            for (let i = 0; i < 5; i++) {
 
-        for (let i = 0; i < 5; i++) {
+                const field =
+                    document.getElementById(
+                        `notice${i + 1}`
+                    );
 
-            const field =
-                document.getElementById(`notice${i+1}`);
+                if (field) {
 
-            if(field){
-                field.value = notices[i] || "";
+                    field.value =
+                        notices[i] || "";
+
+                }
             }
         }
+
+    } catch (error) {
+
+        console.error(
+            "NOTICES LOAD ERROR:",
+            error.code,
+            error.message,
+            error
+        );
     }
-
-} catch (error) {
-
-    console.error(
-        "NOTICES ERROR FULL:",
-        error.code,
-        error.message,
-        error
-    );
 }
 
 /* =========================
@@ -244,7 +245,10 @@ console.log("Notices ref:", noticesRef.path);
 
 document
 .getElementById("saveBtn")
-.addEventListener("click", saveData);
+.addEventListener(
+    "click",
+    saveData
+);
 
 /* =========================
    SAVE DATA
@@ -252,7 +256,9 @@ document
 
 async function saveData() {
 
-    console.log("Save button clicked");
+    console.log(
+        "Save button clicked"
+    );
 
     try {
 
@@ -275,11 +281,25 @@ async function saveData() {
             }
         }
 
-        console.log("Writing settings...");
+        console.log(
+            "Saving assembly year:",
+            document.getElementById(
+                "assemblyYear"
+            ).value
+        );
+
+        console.log(
+            "Saving notices:",
+            notices
+        );
 
         await setDoc(
 
-            doc(db, "display", "settings"),
+            doc(
+                db,
+                "display",
+                "settings"
+            ),
 
             {
                 assemblyYear:
@@ -325,13 +345,17 @@ async function saveData() {
 
         );
 
-        console.log("Settings saved");
-
-        console.log("Writing notices...");
+        console.log(
+            "Settings saved"
+        );
 
         await setDoc(
 
-            doc(db, "display", "notices"),
+            doc(
+                db,
+                "display",
+                "notices"
+            ),
 
             {
                 items: notices
@@ -339,7 +363,9 @@ async function saveData() {
 
         );
 
-        console.log("Notices saved");
+        console.log(
+            "Notices saved"
+        );
 
         status.textContent =
             "Changes saved successfully";
@@ -349,7 +375,8 @@ async function saveData() {
 
         setTimeout(() => {
 
-            status.textContent = "";
+            status.textContent =
+                "";
 
         }, 3000);
 
@@ -357,6 +384,8 @@ async function saveData() {
 
         console.error(
             "SAVE ERROR:",
+            error.code,
+            error.message,
             error
         );
 
