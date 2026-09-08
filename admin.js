@@ -199,6 +199,9 @@ document
 .addEventListener("click", saveData);
 
 async function saveData(){
+    console.log("Save button clicked");
+    
+    
 
     try{
 
@@ -219,6 +222,8 @@ async function saveData(){
                 notices.push(value);
             }
         }
+
+        console.log("Writing settings...");
 
         await setDoc(
 
@@ -269,6 +274,8 @@ async function saveData(){
             }
 
         );
+
+        console.log("Writing notices...");
 
         await setDoc(
 
