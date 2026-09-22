@@ -1,11 +1,5 @@
 /* =========================================================
-   TRINITY HIGH SCHOOL
-   DIGITAL INFORMATION DISPLAY
-   ========================================================= */
-
-
-/* =========================================================
-   GLOBAL
+   TRINITY HIGH SCHOOL DIGITAL DISPLAY
    ========================================================= */
 
 * {
@@ -23,11 +17,8 @@ body {
 
 body {
     font-family: "Segoe UI", Arial, sans-serif;
-
-    background: #f2f2f2;
+    background: #f3f3f3;
     color: #222;
-
-    -webkit-font-smoothing: antialiased;
 }
 
 
@@ -42,7 +33,7 @@ body {
     display: flex;
     flex-direction: column;
 
-    background: #f2f2f2;
+    background: #f3f3f3;
 }
 
 
@@ -51,7 +42,8 @@ body {
    ========================================================= */
 
 .school-header {
-    flex: 0 0 145px;
+    height: 95px;
+    min-height: 95px;
 
     background: #6a1b4d;
     color: white;
@@ -60,9 +52,9 @@ body {
     justify-content: space-between;
     align-items: center;
 
-    padding: 18px 45px;
+    padding: 10px 32px;
 
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
 
     z-index: 10;
 }
@@ -75,30 +67,27 @@ body {
 .school-brand {
     display: flex;
     align-items: center;
-
-    gap: 22px;
+    gap: 16px;
 }
 
 .school-logo {
-    height: 70px;
     width: auto;
+    height: 60px;
+    max-width: 80px;
 
     object-fit: contain;
 }
 
 .school-name h1 {
-    font-size: 2.5rem;
-    font-weight: 750;
-
+    font-size: 1.85rem;
+    font-weight: 700;
     line-height: 1.05;
 }
 
 .school-name p {
-    margin-top: 9px;
+    margin-top: 5px;
 
-    font-size: 1.15rem;
-
-    letter-spacing: 0.5px;
+    font-size: 0.95rem;
 
     opacity: 0.9;
 }
@@ -110,99 +99,89 @@ body {
 
 .clock-section {
     text-align: right;
-
-    min-width: 300px;
 }
 
 #time {
-    font-size: 3.25rem;
-    font-weight: 800;
-
+    font-size: 2.3rem;
+    font-weight: 750;
     line-height: 1;
 }
 
 #day {
-    margin-top: 7px;
+    margin-top: 4px;
 
-    font-size: 1.65rem;
+    font-size: 1.05rem;
     font-weight: 700;
 
-    letter-spacing: 3px;
+    letter-spacing: 2px;
 }
 
 #date {
-    margin-top: 5px;
+    margin-top: 2px;
 
-    font-size: 1.05rem;
+    font-size: 0.85rem;
 
     opacity: 0.9;
 }
 
 
 /* =========================================================
-   MAIN DISPLAY CONTENT
+   MAIN CONTENT
    ========================================================= */
 
 .display-content {
     flex: 1;
-
     min-height: 0;
-
-    padding: 22px 32px;
 
     display: flex;
     flex-direction: column;
 
-    gap: 16px;
+    gap: 12px;
+
+    padding: 15px 22px;
 
     overflow: hidden;
 }
 
 
 /* =========================================================
-   CURRENT PERIOD CARD
+   CURRENT PERIOD
    ========================================================= */
 
 .period-card {
+    flex-shrink: 0;
+
     background: white;
 
-    border-radius: 20px;
+    border-radius: 14px;
 
-    padding: 20px 30px;
+    padding: 14px 20px;
 
     text-align: center;
 
-    box-shadow:
-        0 6px 22px rgba(0, 0, 0, 0.12);
-
-    flex-shrink: 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .period-label {
     color: #6a1b4d;
 
-    font-size: 1.25rem;
+    font-size: 0.95rem;
     font-weight: 800;
 
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
 }
 
 .period-name {
-    margin-top: 3px;
+    margin: 3px 0;
 
-    font-size: 4.5rem;
+    font-size: 3.1rem;
     font-weight: 900;
 
     line-height: 1.05;
-
-    color: #222;
 }
 
 .period-end {
-    margin-top: 5px;
-
-    font-size: 1.45rem;
-    font-weight: 500;
+    font-size: 1.05rem;
 
     color: #555;
 }
@@ -218,108 +197,106 @@ body {
     background: #6a1b4d;
     color: white;
 
-    border-radius: 16px;
+    border-radius: 12px;
 
-    padding: 15px 24px;
+    padding: 10px 16px;
 
     display: flex;
     align-items: center;
 
-    gap: 25px;
+    gap: 16px;
 
-    box-shadow:
-        0 5px 18px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
 }
 
 .assembly-icon {
-    background: rgba(255, 255, 255, 0.17);
+    background: rgba(255, 255, 255, 0.15);
 
-    padding: 10px 18px;
+    padding: 7px 12px;
 
-    border-radius: 9px;
+    border-radius: 7px;
 
-    font-size: 1.05rem;
+    font-size: 0.8rem;
     font-weight: 800;
 
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
 }
 
 .assembly-text {
-    font-size: 1.55rem;
+    font-size: 1.05rem;
 }
 
 .assembly-text strong {
-    margin-left: 8px;
+    margin-left: 5px;
 
-    font-size: 1.8rem;
+    font-size: 1.2rem;
 }
 
 
 /* =========================================================
-   ROTATING ANNOUNCEMENT
+   ANNOUNCEMENT
    ========================================================= */
 
 .announcement-card {
     flex-shrink: 0;
 
-    background: #fff;
-
-    border-radius: 18px;
-
-    border-left: 8px solid #6a1b4d;
-
-    padding: 17px 25px;
-
-    box-shadow:
-        0 5px 18px rgba(0, 0, 0, 0.12);
-
     position: relative;
+
+    background: white;
+
+    border-radius: 14px;
+
+    border-left: 6px solid #6a1b4d;
+
+    padding: 12px 18px;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
 }
 
 .announcement-heading {
     color: #6a1b4d;
 
-    font-size: 0.9rem;
+    font-size: 0.72rem;
     font-weight: 800;
 
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
 
-    margin-bottom: 5px;
+    margin-bottom: 3px;
 }
 
 .announcement-content h2 {
-    font-size: 1.55rem;
+    font-size: 1.2rem;
 
-    margin-bottom: 4px;
+    margin-bottom: 2px;
 }
 
 .announcement-content p {
-    font-size: 1.2rem;
+    font-size: 0.95rem;
 
-    line-height: 1.35;
+    line-height: 1.3;
 
     color: #444;
 }
 
 
 /* =========================================================
-   ANNOUNCEMENT INDICATORS
+   ANNOUNCEMENT DOTS
    ========================================================= */
 
 .announcement-indicators {
     position: absolute;
 
-    right: 22px;
-    top: 20px;
+    right: 16px;
+    top: 15px;
 
     display: flex;
 
-    gap: 7px;
+    gap: 5px;
 }
 
 .announcement-dot {
-    width: 9px;
-    height: 9px;
+    width: 7px;
+    height: 7px;
 
     border-radius: 50%;
 
@@ -332,61 +309,59 @@ body {
 
 
 /* =========================================================
-   SCHOOL NOTICES
+   NOTICES
    ========================================================= */
 
 .notices-card {
     flex: 1;
-
     min-height: 0;
 
     background: white;
 
-    border-radius: 20px;
+    border-radius: 14px;
 
-    padding: 20px 25px;
-
-    box-shadow:
-        0 6px 22px rgba(0, 0, 0, 0.12);
+    padding: 15px 18px;
 
     overflow: hidden;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 
 /* =========================================================
-   NOTICE HEADER
+   NOTICE HEADING
    ========================================================= */
 
 .section-heading {
     display: flex;
-
     align-items: center;
     justify-content: space-between;
 
-    margin-bottom: 12px;
+    margin-bottom: 9px;
 }
 
 .section-heading h2 {
     color: #6a1b4d;
 
-    font-size: 1.6rem;
+    font-size: 1.3rem;
 }
 
 .notice-count {
+    min-width: 28px;
+    height: 28px;
+
+    padding: 0 8px;
+
     background: #6a1b4d;
     color: white;
-
-    min-width: 34px;
-    height: 34px;
-
-    padding: 0 10px;
 
     border-radius: 20px;
 
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
+    font-size: 0.85rem;
     font-weight: 700;
 }
 
@@ -405,19 +380,21 @@ body {
 }
 
 .notice-list li {
+    list-style: none;
+
     background: #f5f5f5;
 
-    border-left: 5px solid #6a1b4d;
+    border-left: 4px solid #6a1b4d;
 
-    border-radius: 7px;
+    border-radius: 6px;
 
-    padding: 10px 16px;
+    padding: 8px 12px;
 
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 
-    font-size: 1.15rem;
+    font-size: 0.95rem;
 
-    line-height: 1.25;
+    line-height: 1.2;
 }
 
 .notice-list li:last-child {
@@ -426,6 +403,7 @@ body {
 
 .loading-notice {
     color: #777;
+
     font-style: italic;
 }
 
@@ -435,9 +413,10 @@ body {
    ========================================================= */
 
 .display-footer {
-    flex: 0 0 38px;
+    height: 30px;
+    min-height: 30px;
 
-    background: #e4e4e4;
+    background: #e5e5e5;
 
     border-top: 1px solid #d3d3d3;
 
@@ -445,23 +424,23 @@ body {
     align-items: center;
     justify-content: space-between;
 
-    padding: 0 32px;
+    padding: 0 22px;
 
-    font-size: 0.85rem;
+    color: #666;
 
-    color: #555;
+    font-size: 0.72rem;
 }
 
 
 /* =========================================================
-   FIREBASE CONNECTION STATUS
+   CONNECTION STATUS
    ========================================================= */
 
 .connection-status {
     display: flex;
     align-items: center;
 
-    gap: 7px;
+    gap: 6px;
 }
 
 .connection-status::before {
@@ -469,8 +448,8 @@ body {
 
     display: inline-block;
 
-    width: 9px;
-    height: 9px;
+    width: 7px;
+    height: 7px;
 
     border-radius: 50%;
 
@@ -498,83 +477,84 @@ body {
     width: 100vw;
     height: 100vh;
 
+    z-index: 99999;
+
     background: #6a1b4d;
     color: white;
-
-    z-index: 99999;
 
     display: flex;
     flex-direction: column;
 
-    align-items: center;
     justify-content: center;
+    align-items: center;
 
     text-align: center;
 
-    padding: 60px;
+    padding: 40px;
 }
 
+
+/* Smaller takeover logo */
+
 .takeover-logo {
-    height: 180px;
     width: auto;
+    height: 80px;
+    max-width: 110px;
 
     object-fit: contain;
 
-    margin-bottom: 35px;
+    margin-bottom: 25px;
 }
 
 .takeover-content {
-    max-width: 1400px;
+    width: 100%;
+    max-width: 1200px;
 }
 
 .takeover-label {
     display: inline-block;
 
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.14);
 
-    border: 2px solid rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.4);
 
-    border-radius: 30px;
+    border-radius: 25px;
 
-    padding: 10px 25px;
+    padding: 7px 18px;
 
-    margin-bottom: 25px;
+    margin-bottom: 18px;
 
-    font-size: 1.15rem;
+    font-size: 0.85rem;
     font-weight: 800;
 
-    letter-spacing: 3px;
+    letter-spacing: 2px;
 }
 
 .takeover-content h1 {
-    font-size: 5.5rem;
+    margin-bottom: 14px;
+
+    font-size: 4rem;
     font-weight: 900;
 
-    line-height: 1;
-
-    margin-bottom: 20px;
+    line-height: 1.05;
 }
 
 .takeover-content h2 {
-    font-size: 3rem;
-    font-weight: 600;
+    margin-bottom: 15px;
 
-    margin-bottom: 20px;
+    font-size: 2rem;
+    font-weight: 600;
 }
 
 .takeover-content p {
-    font-size: 2rem;
+    font-size: 1.4rem;
 
     line-height: 1.4;
 }
 
 
 /* =========================================================
-   HIDDEN ELEMENTS
-
-   !important is intentional here because sections such as
-   assembly-banner and takeover-screen have their own
-   display rules.
+   HIDDEN
    ========================================================= */
 
 .hidden {
@@ -583,182 +563,196 @@ body {
 
 
 /* =========================================================
-   TRANSITIONS
+   SMALL FADE ANIMATION
    ========================================================= */
 
 .announcement-card,
 .assembly-banner {
-    animation: fadeIn 0.35s ease;
+    animation: fadeIn 0.3s ease;
 }
 
 @keyframes fadeIn {
 
     from {
         opacity: 0;
-        transform: translateY(5px);
+        transform: translateY(3px);
     }
 
     to {
         opacity: 1;
         transform: translateY(0);
     }
+
 }
 
 
 /* =========================================================
-   1366 x 768 / SMALLER DISPLAYS
-
-   Allows the same kiosk to work on smaller classroom TVs
-   and monitors without overflowing.
+   SMALLER / 1366x768 DISPLAYS
    ========================================================= */
 
 @media (max-height: 800px) {
 
     .school-header {
-        flex-basis: 110px;
+        height: 80px;
+        min-height: 80px;
 
-        padding: 12px 30px;
+        padding: 7px 22px;
     }
 
     .school-logo {
-        height: 80px;
+        height: 48px;
+        max-width: 65px;
     }
 
     .school-name h1 {
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
     .school-name p {
-        font-size: 0.95rem;
+        margin-top: 3px;
+
+        font-size: 0.78rem;
     }
 
     #time {
-        font-size: 2.6rem;
+        font-size: 1.9rem;
     }
 
     #day {
-        font-size: 1.3rem;
+        margin-top: 2px;
+
+        font-size: 0.85rem;
     }
 
     #date {
-        font-size: 0.9rem;
+        font-size: 0.72rem;
     }
 
     .display-content {
-        padding: 15px 22px;
+        gap: 9px;
 
-        gap: 11px;
+        padding: 11px 16px;
     }
 
     .period-card {
-        padding: 13px 20px;
+        padding: 10px 16px;
     }
 
     .period-label {
-        font-size: 1rem;
+        font-size: 0.78rem;
     }
 
     .period-name {
-        font-size: 3.3rem;
+        font-size: 2.5rem;
     }
 
     .period-end {
-        font-size: 1.15rem;
+        font-size: 0.9rem;
     }
 
     .assembly-banner {
-        padding: 10px 18px;
+        padding: 7px 12px;
+    }
+
+    .assembly-icon {
+        padding: 5px 9px;
+
+        font-size: 0.7rem;
     }
 
     .assembly-text {
-        font-size: 1.2rem;
+        font-size: 0.9rem;
     }
 
     .announcement-card {
-        padding: 12px 20px;
+        padding: 9px 14px;
+    }
+
+    .announcement-heading {
+        font-size: 0.65rem;
     }
 
     .announcement-content h2 {
-        font-size: 1.3rem;
+        font-size: 1rem;
     }
 
     .announcement-content p {
-        font-size: 1rem;
+        font-size: 0.82rem;
     }
 
     .notices-card {
-        padding: 14px 20px;
+        padding: 11px 14px;
     }
 
     .section-heading {
-        margin-bottom: 8px;
+        margin-bottom: 6px;
     }
 
     .section-heading h2 {
-        font-size: 1.35rem;
+        font-size: 1.1rem;
+    }
+
+    .notice-count {
+        min-width: 24px;
+        height: 24px;
+
+        font-size: 0.72rem;
     }
 
     .notice-list li {
-        padding: 7px 13px;
+        padding: 6px 10px;
 
-        margin-bottom: 6px;
+        margin-bottom: 5px;
 
-        font-size: 1rem;
+        font-size: 0.82rem;
     }
 
     .display-footer {
-        flex-basis: 30px;
+        height: 25px;
+        min-height: 25px;
 
-        font-size: 0.75rem;
+        padding: 0 16px;
+
+        font-size: 0.65rem;
     }
 
-    .takeover-logo {
-        height: 130px;
-    }
-
-    .takeover-content h1 {
-        font-size: 4rem;
-    }
-
-    .takeover-content h2 {
-        font-size: 2.3rem;
-    }
-
-    .takeover-content p {
-        font-size: 1.5rem;
-    }
 }
 
 
 /* =========================================================
-   NARROW / LOWER RESOLUTION DISPLAYS
+   NARROW SCREENS
    ========================================================= */
 
-@media (max-width: 1000px) {
+@media (max-width: 900px) {
 
     .school-header {
-        padding-left: 22px;
-        padding-right: 22px;
+        padding-left: 15px;
+        padding-right: 15px;
     }
 
     .school-brand {
-        gap: 14px;
+        gap: 10px;
+    }
+
+    .school-logo {
+        height: 45px;
+        max-width: 60px;
     }
 
     .school-name h1 {
-        font-size: 1.7rem;
+        font-size: 1.35rem;
     }
 
     .clock-section {
-        min-width: 230px;
+        min-width: 180px;
     }
 
     #time {
-        font-size: 2.4rem;
+        font-size: 1.8rem;
     }
 
     .period-name {
-        font-size: 3.2rem;
+        font-size: 2.4rem;
     }
 
 }
