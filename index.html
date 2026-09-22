@@ -8,6 +8,46 @@
 
     <link rel="stylesheet" href="style.css">
 </head>
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import {
+  getFirestore,
+  doc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBXrj6SEcEVl0ThXUQn2xSDw9KfxC07GlM",
+  authDomain: "trinity-display-8a44c.firebaseapp.com",
+  projectId: "trinity-display-8a44c",
+  storageBucket: "trinity-display-8a44c.firebasestorage.app",
+  messagingSenderId: "41795584168",
+  appId: "1:41795584168:web:2bb0f156a6bcceb423029d"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+async function loadDisplay() {
+
+  const snap = await getDoc(
+    doc(db, "display", "current")
+  );
+
+  if (!snap.exists()) {
+    console.log("Document not found");
+    return;
+  }
+
+  console.log(snap.data());
+
+}
+
+loadDisplay();
+
+</script>
 <body>
 
 <div id="eventScreen" class="event-screen hidden">
